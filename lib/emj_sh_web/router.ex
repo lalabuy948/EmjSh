@@ -23,6 +23,7 @@ defmodule EmjShWeb.Router do
     pipe_through :browser
 
     live "/", IndexLive
+    live "/404", NotFoundLive
     get "/:short", RedirectController, :handle
   end
 

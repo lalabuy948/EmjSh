@@ -3,9 +3,9 @@ defmodule EmjShWeb.RedirectController do
   alias EmjSh.Shortener
 
   def handle(conn, %{"short" => value}) do
-    url = Shortener.get(value)
-
-    # json(conn, %{emj: url})
-    redirect(conn, external: url)
+    case Shortener.get(value) do
+      _ -> redirect(conn, to: "/404")
+      url -> redirect(conn, external: url)
+    end
   end
 end
